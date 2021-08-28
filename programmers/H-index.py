@@ -16,6 +16,6 @@ def solution(citations):
         for cit in citations:                       # h번 이상 인용된 논문의 개수 카운팅
             if cit>=i: 
                 count+=1
-        if count>=i and (len(citations)-i) <= i :   # h편 이상(>)=h번 인용, 나머지 논문이 h번 이하 인용            
-            maxx=max(maxx, i)                       # h의 최대값
+        if count>=i:                        # h편 이상(>)=h번 인용           
+            maxx=max(maxx, i)               # h의 최대값
     return maxx
