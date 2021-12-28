@@ -33,12 +33,10 @@ def solution(food_times, k):
         heapq.heappush(hq, (val, i+1))
         
     while alltime+((hq[0][0]-pre)*l)<=k:
-        if k<(now+alltime):
-            break
         now=heapq.heappop(hq)[0]
-        
         alltime+=(now-pre)*l      # 음식을 먹는데 걸리는 시간
         l-=1            # 다 먹었으니 음식 개수 -1
         pre=now
     r=sorted(hq, key=lambda x:x[1])    # 남은 음식의 인덱스 순으로 정렬
+    
     return r[(k-alltime)%l][1]
