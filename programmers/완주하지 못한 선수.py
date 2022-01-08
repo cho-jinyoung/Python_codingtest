@@ -25,8 +25,26 @@ def solution(participant, completion):
             return participant[i]
     return participant[-1]
     '''
-    
-# 2번 정답 > 해시 이용    
+
+# 2번 정답 > dictionary에 이름과 명수를 넣어 comp에 있는 사람을 빼고 남은 1명을 찾음
+    '''
+    part={}  # 각 dictionary에 키:갯수 넣음
+    # 처음엔 dictionary에 값을 넣을 때 counter를 써서 넣었는데
+    # 그러면 participant개수만큼 돌면서 counter를 매번 하기 때문에 효율성 부족
+    for p in participant:      
+        if part.get(p):     
+            part[p]+=1
+        else:
+            part[p]=1
+
+    for i in range(len(completion)): # comp에 있으면 -1
+        part[completion[i]]-=1
+        
+    rev_part=dict(map(reversed, part.items()))  #개수를 key로 바꿔 1개인 요소를 출력
+    return rev_part[1]      
+    '''  
+      
+# 3번 정답 > 해시 이용    
     p_hash={}
     part=0
     
