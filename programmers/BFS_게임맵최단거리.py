@@ -23,3 +23,32 @@ def bfs(maps, queue):
 def solution(maps):
     queue=deque([(0,0,1)])    # 시작위치
     return bfs(maps, queue)
+
+# 어려워서 한번 더 풀었당
+# 1. 이미 지나온 길은 1로 visit 체크
+# 2. 칸 밖으로 나가는 경우 / 해당 칸의 visit값이 0인 경우 / 해당 칸의 visit값이 1인 경우-방문처리
+# 3. 가장 최단거리에 먼저 도착해서 return 되므로 더 긴 경우는 생각하지 않아도 됨
+# 4. x, y 헷갈림 주의!!!
+# 5. 방문처리를 큐에 넣을때 해야함, 큐에서 꺼낼 때 하게 되면 중복으로 큐에 넣는 경우가 생길 수 있음
+'''
+from collections import deque
+
+def bfs(maps, que):
+    # direct=완료지점에 더 가까운 곳 부터 확인하도록 순서를 지정함
+    direct=[[1,0],[0,1],[-1,0],[0,-1]]  # x, y
+    while que:
+        q=que.popleft()      # 더 가까운 곳 부터 해야 최단거리
+        if (len(maps[0])-1)==q[1] and (len(maps)-1)==q[0]:
+            return q[2]       # 가장 최단거리 리턴
+        for dic in direct:    # 각 방향 별로
+            ax=q[0]+dic[0]    # x
+            ay=q[1]+dic[1]    # y
+            if len(maps)>ax>-1 and len(maps[0])>ay>-1 and maps[ax][ay]==1:
+                maps[ax][ay]=0   # 지난 곳 다시 지나지 않도록 방문처리
+                que.append([ax, ay, q[2]+1])    
+    return -1   # que를 다 돌아도 끝까지 도달하지 못하는 경우
+            
+def solution(maps):
+    que=deque([(0,0,1)])    # (x, y, visit count)
+    return bfs(maps, que)
+'''
