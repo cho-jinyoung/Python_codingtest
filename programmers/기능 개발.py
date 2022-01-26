@@ -57,7 +57,7 @@ def solution(progresses, speeds):
     answer.append(count)
     return answer
 
-# 나중에 한번 더 풀음! 스택은 안썼지만 시간 효율 굿
+# 나중에 한번 더 풀음! 스택/큐는 안썼지만 오히려 위의 코드보다 시간 효율 굿
 import math
 def solution(progresses, speeds):
     answer=[]
