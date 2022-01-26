@@ -56,3 +56,19 @@ def solution(progresses, speeds):
             time+=1
     answer.append(count)
     return answer
+
+# 나중에 한번 더 풀음! 스택은 안썼지만 시간 효율 굿
+import math
+def solution(progresses, speeds):
+    answer=[]
+    count, m=1, 0
+    for i in range(len(progresses)):
+        p=math.ceil((100-progresses[i])/speeds[i])  # 배포 가능 날짜
+        if p>m: # 배포
+            if m!=0: answer.append(count)           # 첫번째 경우 제외
+            count=1
+        else:   # 배포 가능 날짜가 앞 작업보다 빠른 경우
+            count+=1   
+        m=max(p, m) # 가장 빠른 배포 가능 날짜
+    answer.append(count)    # 마지막 배포 가능 날 추가
+    return answer
