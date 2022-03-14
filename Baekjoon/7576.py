@@ -1,6 +1,7 @@
 # beakjoon 7576 토마토
 # BFS > 1(익은 토마토)를 기준으로 하루가 지날 때마다 옆에 있는 토마토 익히기, 더 이상 익을 수 있는 토마토가 없을 때까지
 # 며칠 걸리는지 세어야 하므로 DFS가 아닌 BFS
+# deque를 안쓰면 시간초과
 
 from collections import deque
 import sys
