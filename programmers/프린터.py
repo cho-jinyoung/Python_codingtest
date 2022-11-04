@@ -19,3 +19,31 @@ def solution(priorities, location):
     for i, p in enumerate(stack):           # 인쇄 순서
         if p[0]==location:                  # 처음 인덱스와 location값이 같은 경우
             return i+1                      # 인덱스+1 번째로 인쇄됨
+
+        
+        
+# 비슷한데 deque를 이용한 풀이        
+from collections import deque
+def solution(priorities, location):
+    answer = 0
+    lists=deque()
+
+    for i in range(len(priorities)):
+        lists.append([i, priorities[i]])
+    
+    while lists:
+        num, pri=lists.popleft()
+        
+        if len(lists)==0:
+            answer+=1
+            return answer
+        
+        for i in range(len(lists)):
+            if pri < lists[i][1]:
+                lists.append([num, pri])
+                break
+                
+        if i==len(lists)-1:
+            answer+=1
+            if num==location:
+                return answer
